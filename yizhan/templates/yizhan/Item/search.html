@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Yizhan后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'yizhan/assets/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'yizhan/assets/css/bootstrap-table.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'yizhan/assets/css/iconfont.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'yizhan/assets/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'yizhan/assets/libs/datatablejs/dataTables.bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'yizhan/assets/libs/select2/select2.min.css' %}">
+</head>
+
+
+            <section class="page-body">
+                <div class="row widget">
+                    <section class="col-md-12">
+
+                            <div class="box-body" id="table_item" th:fragment="table_refresh">
+                                <table id="table" class="table table-responsive table-hover">
+{#                                    <thead>#}
+{#                                        <tr>#}
+{#                                            <th>No.</th>#}
+{#                                            <th>NQ_zh</th>#}
+{#                                            <th>NA_zh</th>#}
+{#                                            <th>NQ_en</th>#}
+{#                                            <th>NA_en</th>#}
+{#                                            <th>inventory</th>#}
+{#                                            <th>NQ_ru</th>#}
+{#                                            <th>NA_ru</th>#}
+{#                                            <th>operation</th>#}
+{#                                        </tr>#}
+{#                                    </thead>#}
+                                    <tbody>
+                                        {% for book in sea_res  %}
+                                        <tr>
+                                            <td>{{ book.id }}</td>
+                                            <td>{{ book.NQ_zh }}</td>
+                                            <td>{{ book.NA_zh }}</td>
+                                            <td>{{ book.NQ_en }}</td>
+                                            <td>{{ book.NA_en }}</td>
+{#                                            <td>{{ book.inventory }}</td>#}
+                                            <td>{{ book.NQ_ru }}</td>
+                                            <td>{{ book.NA_ru }}</td>
+                                            <td>
+                                                <a href="http://127.0.0.1:8000/yizhan/bookinfo_change?book_id={{ book.id }}">
+                                                    <button type="button" class="btn btn-info">
+                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                        编辑
+                                                    </button>
+                                                </a>
+                                                <a href="http://127.0.0.1:8000/yizhan/bookinfo_delete?book_id={{ book.id }}">
+                                                    <button type="button" class="btn btn-danger">
+                                                        <i class="glyphicon glyphicon-remove"></i>
+                                                        删除
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+
+
+    </div>
+    <script type="text/javascript" src="{% static 'yizhan/assets/js/jquery-2.1.0.min.j' %}s"></script>
+    <script type="text/javascript" src="{% static 'yizhan/assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'yizhan/assets/libs/datatablejs/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'yizhan/assets/libs/datatablejs/dataTables.bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'yizhan/assets/js/alpha.js' %}"></script>
+    <script type="text/javascript" src="{% static 'yizhan/assets/js/item/ShowItemInfo.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#table').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false,
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

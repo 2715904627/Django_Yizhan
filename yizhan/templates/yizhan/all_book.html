@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看所有语料</title>
+</head>
+<body>
+<table border="='1">
+    <tr>
+        <th>id</th>
+        <th>title</th>
+
+        <th>price</th>
+        <th>marker_price</th>
+        <th>pub</th>
+        <th>op</th>
+
+
+    </tr>
+    {% for book in all_book %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.price }}</td>
+            <td>{{ book.market_price }}</td>
+            <td>{{ book.pub }}</td>
+            <td>
+                <a href="/yizhan/update_book/{{ book.id }}">更新</a>
+                <a href="/yizhan/delete_book?book_id={{ book.id }}">删除</a>
+
+            </td>
+
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
